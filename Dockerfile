@@ -27,6 +27,8 @@ RUN git clone https://github.com/steemit/steem && \
     make && \
     make install
 
+VOLUME /data
+WORKDIR /data
 CMD steemd --rpc-endpoint --seed-node=seed.steemed.net:2001 --seed-node=52.74.152.79:2001
 
 # Cleanup
