@@ -22,6 +22,7 @@ RUN git clone https://github.com/steemit/steem && \
     cd steem && \
     git submodule update --init --recursive && \
     cmake -DCMAKE_BUILD_TYPE=Release \
+          -DBUILD_STEEM_TESTNET=ON \
           -DENABLE_CONTENT_PATCHING=OFF \
           -DLOW_MEMORY_NODE=ON && \
     make && \
@@ -29,7 +30,7 @@ RUN git clone https://github.com/steemit/steem && \
 
 VOLUME /data
 WORKDIR /data
-CMD steemd --rpc-endpoint --seed-node=seed.steemed.net:2001 --seed-node=52.74.152.79:2001
+CMD steemd --testnet --rpc-endpoint=127.0.0.1:9876
 
 # Cleanup
 RUN apt-get purge -y g++ cmake libncurses5-dev python3-dev autotools-dev git \
